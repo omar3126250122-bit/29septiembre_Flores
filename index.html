@@ -3,14 +3,539 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+
+    <title>Omar Gabriel Flores Castro - Cloud Infrastructure</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+
+            background:
+                radial-gradient(circle at 10% 10%, rgba(16,185,129,0.10), transparent 30%),
+                radial-gradient(circle at 90% 90%, rgba(139,92,246,0.12), transparent 30%),
+                #f8fafc;
+
+            color: #111827;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 30px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1050px;
+
+            background: rgba(255,255,255,0.92);
+
+            border: 1px solid #e5e7eb;
+
+            border-radius: 30px;
+
+            padding: 65px;
+
+            box-shadow:
+                0 25px 70px rgba(15,23,42,0.08);
+
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container::before {
+            content: "";
+
+            position: absolute;
+
+            width: 250px;
+            height: 250px;
+
+            background: rgba(16,185,129,0.08);
+
+            border-radius: 50%;
+
+            top: -120px;
+            left: -100px;
+
+            filter: blur(10px);
+        }
+
+        .container::after {
+            content: "";
+
+            position: absolute;
+
+            width: 250px;
+            height: 250px;
+
+            background: rgba(139,92,246,0.08);
+
+            border-radius: 50%;
+
+            bottom: -130px;
+            right: -100px;
+
+            filter: blur(10px);
+        }
+
+        .header {
+            text-align: center;
+
+            position: relative;
+            z-index: 2;
+
+            margin-bottom: 55px;
+        }
+
+        .tag {
+            display: inline-flex;
+
+            align-items: center;
+            gap: 8px;
+
+            padding: 8px 15px;
+
+            border-radius: 50px;
+
+            background: #ecfdf5;
+
+            color: #059669;
+
+            border: 1px solid #a7f3d0;
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            letter-spacing: 1.5px;
+
+            text-transform: uppercase;
+
+            margin-bottom: 25px;
+        }
+
+        .tag-dot {
+            width: 7px;
+            height: 7px;
+
+            background: #10b981;
+
+            border-radius: 50%;
+
+            box-shadow: 0 0 10px rgba(16,185,129,0.6);
+        }
+
+        h1 {
+            font-size: clamp(32px, 5vw, 56px);
+
+            line-height: 1.05;
+
+            font-weight: 800;
+
+            letter-spacing: -2.5px;
+
+            margin-bottom: 22px;
+
+            color: #111827;
+        }
+
+        h1 span {
+            background: linear-gradient(
+                90deg,
+                #059669,
+                #10b981,
+                #8b5cf6
+            );
+
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .name {
+            color: #6b7280;
+
+            font-size: 14px;
+
+            letter-spacing: 0.5px;
+        }
+
+        .name strong {
+            color: #111827;
+            font-weight: 600;
+        }
+
+        .cards {
+            position: relative;
+            z-index: 2;
+
+            display: grid;
+
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 20px;
+        }
+
+        .card {
+            position: relative;
+
+            text-decoration: none;
+
+            color: #111827;
+
+            background: white;
+
+            border: 1px solid #e5e7eb;
+
+            border-radius: 20px;
+
+            padding: 28px;
+
+            min-height: 210px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+            overflow: hidden;
+
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease,
+                border-color 0.3s ease;
+        }
+
+        .card::before {
+            content: "";
+
+            position: absolute;
+
+            top: 0;
+            left: 0;
+
+            width: 100%;
+            height: 3px;
+
+            background: linear-gradient(
+                90deg,
+                #10b981,
+                #8b5cf6
+            );
+
+            transform: scaleX(0);
+
+            transform-origin: left;
+
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .card:hover {
+            transform: translateY(-7px);
+
+            border-color: #d1d5db;
+
+            box-shadow:
+                0 20px 40px rgba(15,23,42,0.10);
+        }
+
+        .icon {
+            width: 50px;
+            height: 50px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 15px;
+
+            background: linear-gradient(
+                135deg,
+                #ecfdf5,
+                #f5f3ff
+            );
+
+            color: #059669;
+
+            font-size: 21px;
+
+            border: 1px solid #d1fae5;
+
+            transition: 0.3s ease;
+        }
+
+        .card:hover .icon {
+            color: #7c3aed;
+
+            transform: rotate(-3deg) scale(1.08);
+
+            border-color: #ddd6fe;
+        }
+
+        .card-content {
+            margin-top: 25px;
+        }
+
+        .card-title {
+            font-size: 15px;
+
+            font-weight: 700;
+
+            margin-bottom: 8px;
+        }
+
+        .card-description {
+            font-size: 12px;
+
+            color: #9ca3af;
+
+            line-height: 1.6;
+        }
+
+        .arrow {
+            position: absolute;
+
+            right: 25px;
+            bottom: 25px;
+
+            font-size: 18px;
+
+            color: #d1d5db;
+
+            transition: 0.3s ease;
+        }
+
+        .card:hover .arrow {
+            color: #8b5cf6;
+
+            transform: translateX(4px);
+        }
+
+        .footer {
+            position: relative;
+            z-index: 2;
+
+            margin-top: 45px;
+
+            padding-top: 20px;
+
+            border-top: 1px solid #f1f5f9;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            color: #9ca3af;
+
+            font-size: 10px;
+
+            font-weight: 600;
+
+            letter-spacing: 1.2px;
+
+            text-transform: uppercase;
+        }
+
+        .status {
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            color: #059669;
+        }
+
+        .status-dot {
+            width: 7px;
+            height: 7px;
+
+            background: #10b981;
+
+            border-radius: 50%;
+
+            box-shadow: 0 0 8px rgba(16,185,129,0.7);
+        }
+
+        @media (max-width: 800px) {
+
+            .container {
+                padding: 45px 25px;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .card {
+                min-height: 170px;
+            }
+
+            h1 {
+                letter-spacing: -1.5px;
+            }
+
+        }
+
+        @media (max-width: 500px) {
+
+            body {
+                padding: 15px;
+            }
+
+            .container {
+                border-radius: 22px;
+                padding: 35px 20px;
+            }
+
+            .footer {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+        }
+
+    </style>
 </head>
+
 <body>
-    
-    <center>
-<h1>THIS IS MY FIRST TEST OF FRONT END IN THE CLOUD</h1>
-<h2>MY NAME IS OMAR GABRIEL FLORES CASTRO</h2>
-    </center>
+
+    <main class="container">
+
+        <header class="header">
+
+            <div class="tag">
+                <span class="tag-dot"></span>
+                Cloud Front-End Test
+            </div>
+
+            <h1>
+                This is my first test<br>
+                <span>of Front-End in the Cloud</span>
+            </h1>
+
+            <p class="name">
+                My name is
+                <strong>Omar Gabriel Flores Castro</strong>
+            </p>
+
+        </header>
+
+        <section class="cards">
+
+            <a
+                href="C:\Users\omar\OneDrive\Desktop\Practices\Captacion De Clientes.html"
+                class="card"
+            >
+
+                <div class="icon">
+                    👥
+                </div>
+
+                <div class="card-content">
+
+                    <div class="card-title">
+                        Client Acquisition Workflow
+                    </div>
+
+                    <div class="card-description">
+                        Client acquisition process and workflow.
+                    </div>
+
+                </div>
+
+                <div class="arrow">
+                    →
+                </div>
+
+            </a>
+
+
+            <a
+                href="C:\Users\omar\OneDrive\Desktop\Practices\Modelo De Negocio.html"
+                class="card"
+            >
+
+                <div class="icon">
+                    $
+                </div>
+
+                <div class="card-content">
+
+                    <div class="card-title">
+                        Revenue & Monetization Model
+                    </div>
+
+                    <div class="card-description">
+                        Business model and monetization strategy.
+                    </div>
+
+                </div>
+
+                <div class="arrow">
+                    →
+                </div>
+
+            </a>
+
+            <a
+                href="Diagrama_Negocio.html"
+                class="card"
+            >
+
+                <div class="icon">
+                    ◇
+                </div>
+
+                <div class="card-content">
+
+                    <div class="card-title">
+                        Principal Business Process
+                    </div>
+
+                    <div class="card-description">
+                        Main process and business structure.
+                    </div>
+
+                </div>
+
+                <div class="arrow">
+                    →
+                </div>
+
+            </a>
+
+        </section>
+
+        <footer class="footer">
+
+            <span>
+                Cloud Infrastructure
+            </span>
+
+            <span class="status">
+                <span class="status-dot"></span>
+                System Online
+            </span>
+
+        </footer>
+
+    </main>
 
 </body>
 </html>
